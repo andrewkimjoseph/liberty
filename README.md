@@ -20,7 +20,7 @@ git clone  https://github.com/andrewkimjoseph/liberty.git
 cd liberty
 npm install
 ```
-- Build and run the project
+- Run the project
 ```
 npx tsx main.ts
 ```
