@@ -1,5 +1,5 @@
 import { parseEther, toHex } from "viem";
-import {mnemonicToAccount } from "viem/accounts";
+import { mnemonicToAccount } from "viem/accounts";
 import "dotenv/config";
 import Web3 from "web3";
 import { newKitFromWeb3 } from "@celo/contractkit";
@@ -7,12 +7,12 @@ import { newKitFromWeb3 } from "@celo/contractkit";
 const infuraAPIKey = process.env.INFURA_API_KEY;
 const mnemonicPhrase = process.env.MNEMONIC_PHRASE_MAIN;
 
-if (!infuraAPIKey){
-    throw new Error("Infura API Key is not set."); 
+if (!infuraAPIKey) {
+    throw new Error("Infura API Key is not set.");
 }
 
-if (!mnemonicPhrase){
-    throw new Error("Mnemonic phrase is not set."); 
+if (!mnemonicPhrase) {
+    throw new Error("Mnemonic phrase is not set.");
 }
 
 
@@ -25,7 +25,6 @@ const mnemonicAccount = mnemonicToAccount(mnemonicPhrase);
 async function transferCUSD(recipientWalletAddress: string, amountAsString: string): Promise<void> {
     try {
 
-
         let cUSDcontract = await kit.contracts.getStableToken();
 
         kit.addAccount(toHex(mnemonicAccount.getHdKey().privateKey as Uint8Array));
@@ -35,11 +34,10 @@ async function transferCUSD(recipientWalletAddress: string, amountAsString: stri
         kit.setFeeCurrency(cUSDcontract.address);
 
         const txnResult = await cUSDcontract
-            .transfer(recipientWalletAddress, parseEther(amountAsString).toString() )
+            .transfer(recipientWalletAddress, parseEther(amountAsString).toString())
             .send({ feeCurrency: cUSDcontract.address });
 
         console.log(txnResult);
-
 
     } catch (error) {
         console.error("Error fetching addresses:", error);
