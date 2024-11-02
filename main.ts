@@ -1,6 +1,5 @@
-import { createPublicClient, createWalletClient, formatEther, formatUnits, http, parseEther, toHex } from "viem";
-import { hdKeyToAccount, mnemonicToAccount, privateKeyToAccount } from "viem/accounts";
-import { celo } from "viem/chains";
+import { parseEther, toHex } from "viem";
+import {mnemonicToAccount } from "viem/accounts";
 import "dotenv/config";
 import Web3 from "web3";
 import { newKitFromWeb3 } from "@celo/contractkit";
