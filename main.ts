@@ -48,7 +48,7 @@ async function transferCUSD(): Promise<void> {
       )
       .send({ feeCurrency: cUSDcontract.address });
 
-    console.log(txnResult);
+    console.log("Transaction Hash:", await txnResult.getHash());
   } catch (error) {
     console.error("Error fetching addresses:", error);
   }
