@@ -7,7 +7,7 @@ import { newKitFromWeb3 } from "@celo/contractkit";
 const infuraAPIKey = process.env.INFURA_API_KEY;
 const mnemonicPhrase = process.env.MNEMONIC_PHRASE_MAIN;
 const recipientWalletAddress = process.env.RECIPIENT_WALLET_ADDRESS;
-const amountAsString = process.env.AMOUNT_AS_STRING;
+const amountIncUSD = process.env.AMOUNT_IN_CUSD;
 
 if (!infuraAPIKey) {
   throw new Error("Infura API Key is not set.");
@@ -21,7 +21,7 @@ if (!recipientWalletAddress) {
   throw new Error("Recipient wallet address is not set.");
 }
 
-if (!amountAsString) {
+if (!amountIncUSD) {
   throw new Error("Amount as string address is not set.");
 }
 
@@ -44,7 +44,7 @@ async function transferCUSD(): Promise<void> {
     const txnResult = await cUSDcontract
       .transfer(
         recipientWalletAddress as string,
-        parseEther(amountAsString as string).toString()
+        parseEther(amountIncUSD as string).toString()
       )
       .send({ feeCurrency: cUSDcontract.address });
 
